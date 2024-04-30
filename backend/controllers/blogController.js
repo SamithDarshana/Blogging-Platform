@@ -15,10 +15,19 @@ const addBlog = async (req, res) => {
 }
   
 const getBlog = async (req, res) => {
+    const postId = req.params.id 
+    const q = "select * from blog_post where post_id = ?"
+
+    db.query(q, [postId], (err, data) => {
+        if(err){
+            return res.status(404).json(err.message)
+        }
+        return res.json(data)
+    })
 
 }
 
-const getBlogs = async (req, res) => {
+const getBlogs = async (res) => {
     const q = "select * from blog_post"
     db.query(q, (err, data) => {
         if(err){
@@ -29,11 +38,29 @@ const getBlogs = async (req, res) => {
 }
 
 const updateBlog = async (req, res) => {
+    const {title, content, tags} = req.body
+    const values = [title, content, tags]
+    const postId = req.params.id
+    const q = "update blog_post set `title`=?, `content`=?, `tags`=? where post_id = ?"
 
+    db.query(q, [...values, postId], (err) => {
+        if(err){
+            res.status(400).json(err.message)
+        }
+        return res.json("Blog updated successfully")
+    })
 }
 
 const deleteBlog = async (req, res) => {
+    const postId = req.params.id
+    const q = "delete from blog_post where post_id = ?"
 
+    db.query(q, [postId], (err) => {
+        if(err){
+            return res.status(404).json(err.message)
+        }
+        return res.json("Blog deleted successfully")
+    })
 }
 
 module.exports = {addBlog, getBlog, getBlogs, updateBlog, deleteBlog}

@@ -1,7 +1,5 @@
 const db = require('../config/dbConnect')
 
-
-
 const addUser = async (req, res) => { 
     const {username, email, password} = req.body
     const values = [ username,  email, password]; 
@@ -16,7 +14,7 @@ const addUser = async (req, res) => {
     })
 }  
 
-const getUsers  = async (req, res) => {
+const getUsers  = async (res) => {
     const q = "select * from user"
     db.query(q, (err, data) => {
         if(err){
