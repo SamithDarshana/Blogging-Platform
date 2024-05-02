@@ -7,7 +7,7 @@ function NavButton (props){
      <Link to={props.link}>
           <button
             className="bg-blue-500 hover:bg-blue-600 text-white font-bold 
-      py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+      py-2 px-4 rounded focus:outline-none focus:shadow-outline h-8 flex items-center"
           >
             {props.text}
           </button>
