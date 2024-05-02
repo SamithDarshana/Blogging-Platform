@@ -1,11 +1,10 @@
-import React from "react";
-import SearchBar from "./SearchBar";
+import SearchBar from "./SearchBar"; 
+import NavButton from "./NavButton";
 
 const TopBar = () => {
-
   const handleSearch = (searchTerm) => {
-    console.log(searchTerm)
-  }
+    console.log(searchTerm);
+  };
 
   return (
     <div
@@ -17,28 +16,14 @@ const TopBar = () => {
         <div className="container bg-custom-300 w-12 h-10"></div>
         {/* Search bar */}
         <div className="container w-2/3">
-        <SearchBar onSearch={handleSearch}/>
+          <SearchBar onSearch={handleSearch} />
         </div>
-        
       </div>
       {/* Navigation */}
-      <div className=" w-2/5 flex justify-between p-1">
-        <button
-          class="bg-blue-500 hover:bg-blue-600 text-white font-bold 
-          py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20"
-        ></button>
-        <button
-          class="bg-blue-500 hover:bg-blue-600 text-white font-bold 
-      py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20"
-        ></button>
-        <button
-          class="bg-blue-500 hover:bg-blue-600 text-white font-bold 
-      py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20"
-        ></button>
-        <button
-          class="bg-blue-500 hover:bg-blue-600 text-white font-bold 
-      py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20"
-        ></button>
+      <div className=" w-1/5 flex justify-between p-1"> 
+        <NavButton text="LOG" link="/login"/>
+        <NavButton text="CATEGORY" link="/category"/>
+        <NavButton text="NEW" link="/new"/> 
       </div>
     </div>
   );
