@@ -27,7 +27,7 @@ const getBlog = async (req, res) => {
 
 }
 
-const getBlogs = async (res) => {
+const getBlogs = async (req,res) => {
     const q = "select * from blog_post"
     db.query(q, (err, data) => {
         if(err){

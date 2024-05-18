@@ -14,7 +14,7 @@ function App() {
         <Route path="/new" element={<NewBlog/>}/>
         <Route path="/category" element={<Category/>}/>
         <Route path="/login" element={<Login/>}/>
-        <Route path="/blog" element={<Blog text="Hello i am blog 1" title="Blog 1" date="2024/05/18" author="Samith"/>}/>
+        <Route path="/blog" element={<Blog text="Hello i am blog 1" title="Blog 1" date="2024/05/18" likes={5}/>}/>
       </Routes>
     </BrowserRouter>
   );

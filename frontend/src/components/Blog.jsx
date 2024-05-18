@@ -1,10 +1,19 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 const Blog = (props) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  const displayText = String(props.text).length > 50 ? String(props.text).substring(0,300): props.text
+
   return (
     <div
-      className="bg-gradient-to-br from-custom-500 to-custom-600 text-slate-800 
-    p-2 w-full"
+      className="bg-gradient-to-br from-custom-800 to-custom-801 text-slate-800 
+    p-2 w-full m-3 rounded-md"
     >
       {/* title */}
       <div className="flex justify-center">
@@ -18,10 +27,16 @@ const Blog = (props) => {
         {/* date */}
         <div>{props.date}</div>
         {/* author */}
-        <div>{props.author}</div>
+        {/* likes */}
+        <div>{props.likes}</div>
       </div>
       {/* content */}
-      <div>{props.text}</div>
+      <div>
+        {isExpanded ? props.text : displayText}
+        <button onClick={toggleExpand} className="ml-3 text-sky-600 bg-amber-100 pl-1 pr-1 pt-0 pb-0 rounded">
+          {isExpanded ? "Read less" : "Read more"}
+        </button>
+      </div>
     </div>
   );
 };
@@ -30,7 +45,7 @@ Blog.propTypes = {
   text: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
+  likes: PropTypes.number,
 };
 
 export default Blog;

@@ -15,7 +15,10 @@ export default {
         'custom-500': '#acb6e5',
         'custom-600': '#86fde8',
         'custom-700': '#153b50',
-        'custom-750': '#07beb8'
+        'custom-750': '#07beb8',
+        'custom-800': '#C9D6FF',
+        'custom-801': '#E2E2E2',
+        'custom-802': '#2C5364'
       }
     },
   },
