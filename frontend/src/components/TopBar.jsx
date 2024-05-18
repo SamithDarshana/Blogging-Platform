@@ -32,12 +32,15 @@ const TopBar = () => {
       {/* Content */}
       <div className="flex w-full text-custom-700">
         <div className="w-2/3 mt-28 ml-10">
-          <h1 className="text-8xl font-bold">START </h1>
-          <h1 className="text-9xl font-extrabold mt-10">YOUR BLOG</h1>
-          <h1 className="text-8xl font-bold mt-10">HERE</h1>
+          <h1 className="text-8xl font-bold" 
+            style={{textShadow: "2px 2px 6px rgba(0, 0, 0, 0.5)"}}>START </h1>
+          <h1 className="text-9xl font-extrabold mt-10"
+            style={{textShadow: "2px 2px 6px rgba(0, 0, 0, 0.5)"}}>YOUR BLOG</h1>
+          <h1 className="text-8xl font-bold mt-10"
+            style={{textShadow: "2px 2px 6px rgba(0, 0, 0, 0.5)"}}>HERE</h1>
         </div>
         {/* image */}
-        <div className="mt-20">
+        <div className="mt-20 mr-5 shadow-lg">
           <img src="./img.svg" alt="" />
         </div>
       </div>
