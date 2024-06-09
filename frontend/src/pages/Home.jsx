@@ -19,7 +19,7 @@ const Home = () => {
       }
     };
     fetchBlogs();
-  }, []);
+  },[]);
 
   if (error) {
     return { error };
@@ -31,8 +31,8 @@ const Home = () => {
   return (
     <>
       <TopBar />
-      <div>
-        <h1>Blog Posts</h1>
+      <div className="flex flex-col justify-center items-center">
+        <h1 className="mt-10 mb-4 font-bold text-blue-950 text-2xl">Blog Posts</h1>
         <ul>
           {blog.map((blog) => (
             <li key={blog.post_id}>

@@ -1,8 +1,8 @@
 import SearchBar from "./SearchBar";
 import NavButton from "./NavButton";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; 
 
-const TopBar = () => {
+const TopBar = () => { 
   return (
     <div
       className="bg-gradient-to-r from-custom-500 to-custom-600 text-white p-2 h-screen w-full
@@ -25,7 +25,7 @@ const TopBar = () => {
         {/* Navigation */}
         <div className=" w-1/5 flex justify-between p-1">
           <NavButton text="LOG" link="/login" />
-          <NavButton text="CATEGORY" link="/category" />
+          <NavButton text="CATEGORY" link="/category"/>
           <NavButton text="NEW" link="/new" />
         </div>
       </div>

@@ -2,24 +2,27 @@ const db = require("../config/dbConnect");
 
 const Joi = require("joi");
 
-const addUser = async (req, res) => { 
-
+const addUser = async (req, res) => {
   //validate inputs
   const schema = Joi.object({
     username: Joi.string().alphanum().min(3).max(30).required(),
-    password: Joi.string().required(),
-    email: Joi.string().email({minDomainSegments:2, tlds:{allow:['com', 'net']}})
-  }) 
+    password: Joi.string().min(5).max(25).required(),
+    email: Joi.string().email({
+      minDomainSegments: 2,
+      tlds: { allow: ["com", "net"] },
+    }),
+    role: Joi.string(),
+  });
 
-  const {error, value} = schema.validate(req.body)  
-  if(error){
-    return res.status(400).json(error.details[0].message)
-  }  
-  const { username, email, password } = value;
+  const { error, value } = schema.validate(req.body);
+  if (error) {
+    return res.status(400).json(error.details[0].message);
+  }
+  const { username, email, password, role = "user" } = req.body;
 
-  
-  const q = "insert into user (`username`, `email`, `password`) values (?, ?, ?)";
-  const values = [username, email, password];
+  const q =
+    "insert into user (`username`, `email`, `password`, `role`) values (?, ?, ?, ?)";
+  const values = [username, email, password, role];
 
   db.query(q, values, (err) => {
     if (err) {
