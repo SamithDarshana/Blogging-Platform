@@ -1,4 +1,5 @@
 const db = require("../config/dbConnect");
+const bcrypt = require("bcrypt");
 
 const Joi = require("joi");
 
@@ -18,11 +19,20 @@ const addUser = async (req, res) => {
   if (error) {
     return res.status(400).json(error.details[0].message);
   }
-  const { username, email, password, role = "user" } = req.body;
+  const { username, email, password } = req.body;
 
-  const q =
-    "insert into user (`username`, `email`, `password`, `role`) values (?, ?, ?, ?)";
-  const values = [username, email, password, role];
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  let q, values;
+  if (req.body.role) {
+    const role = req.body.role;
+    q =
+      "INSERT INTO user (`username`, `email`, `password`, `role`) VALUES (?, ?, ?, ?)";
+    values = [username, email, hashedPassword, role];
+  } else {
+    q = "INSERT INTO user (`username`, `email`, `password`) VALUES (?, ?, ?)";
+    values = [username, email, hashedPassword];
+  }
 
   db.query(q, values, (err) => {
     if (err) {
@@ -33,7 +43,7 @@ const addUser = async (req, res) => {
   });
 };
 
-const getUsers = async (res) => {
+const getUsers = async (req, res) => {
   const q = "select * from user";
   db.query(q, (err, data) => {
     if (err) {
