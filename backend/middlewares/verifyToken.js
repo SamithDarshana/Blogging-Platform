@@ -7,7 +7,7 @@ const verifyToken = (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, "secret");
+    const decoded = jwt.verify(token, process.env.JWTKEY);
     req.user = decoded;
     next();
   } catch (ex) {

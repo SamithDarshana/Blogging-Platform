@@ -8,11 +8,13 @@ const {
   updateBlog,
   deleteBlog,
 } = require("../controllers/blogController");
+const verifyToken = require("../middlewares/verifyToken");
+const isAdmin = require("../middlewares/isAdmin");
 
-router.post("/", addBlog);
+router.post("/", verifyToken, isAdmin, addBlog);
 router.get("/:id", getBlog);
 router.get("/", getBlogs);
-router.put("/:id", updateBlog);
-router.delete("/:id", deleteBlog);
+router.put("/:id", verifyToken, isAdmin, updateBlog);
+router.delete("/:id", verifyToken, isAdmin, deleteBlog);
 
 module.exports = router;

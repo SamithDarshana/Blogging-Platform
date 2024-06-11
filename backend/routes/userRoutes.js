@@ -6,12 +6,14 @@ const {
   updateUser,
   deleteUser,
 } = require("../controllers/userController");
+const verifyToken = require("../middlewares/verifyToken");
+const isAdmin = require("../middlewares/isAdmin");
 const router = express.Router();
 
 router.post("/", addUser);
-router.get("/", getUsers);
-router.get("/:id", getUser);
-router.put("/:id", updateUser);
-router.delete("/:id", deleteUser);
+router.get("/", verifyToken, isAdmin, getUsers);
+router.get("/:id", verifyToken, isAdmin, getUser);
+router.put("/:id", verifyToken, isAdmin, updateUser);
+router.delete("/:id", verifyToken, isAdmin, deleteUser);
 
 module.exports = router;
