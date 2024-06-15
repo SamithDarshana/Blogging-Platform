@@ -45,9 +45,14 @@ const logUser = async (req, res) => {
         process.env.JWTKEY,
         { expiresIn: "1h" }
       );
+      res.cookie("token", token, {
+        httpOnly: true, //only access http request
+        maxAge: 360000,
+      });
 
       return res.json({
         message: "Login successful",
+        status: true,
         id: user.user_id,
         name: user.username,
         token,

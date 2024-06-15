@@ -10,7 +10,7 @@ const Home = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/blog/getblogs");
+        const res = await axios.get("http://localhost:4000/api/blog");
         setBlog(res.data);
         console.log(res);
         console.log(blog);
@@ -19,7 +19,7 @@ const Home = () => {
       }
     };
     fetchBlogs();
-  },[]);
+  }, []);
 
   if (error) {
     return { error };
@@ -32,7 +32,9 @@ const Home = () => {
     <>
       <TopBar />
       <div className="flex flex-col justify-center items-center">
-        <h1 className="mt-10 mb-4 font-bold text-blue-950 text-2xl">Blog Posts</h1>
+        <h1 className="mt-10 mb-4 font-bold text-blue-950 text-2xl">
+          Blog Posts
+        </h1>
         <ul>
           {blog.map((blog) => (
             <li key={blog.post_id}>
