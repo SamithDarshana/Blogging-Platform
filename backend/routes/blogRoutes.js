@@ -17,4 +17,9 @@ router.get("/", getBlogs);
 router.put("/:id", verifyToken, isAdmin, updateBlog);
 router.delete("/:id", verifyToken, isAdmin, deleteBlog);
 
+//for devops project
+router.get("/", (req, res) => {
+  res.send("Successfull");
+});
+
 module.exports = router;
