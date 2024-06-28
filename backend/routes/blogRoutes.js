@@ -13,7 +13,7 @@ const isAdmin = require("../middlewares/isAdmin");
 
 router.post("/", verifyToken, isAdmin, addBlog);
 router.get("/:id", getBlog);
-router.get("/", getBlogs);
+//router.get("/", getBlogs);
 router.put("/:id", verifyToken, isAdmin, updateBlog);
 router.delete("/:id", verifyToken, isAdmin, deleteBlog);
 
