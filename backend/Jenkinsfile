@@ -8,13 +8,13 @@ pipeline {
                     // Stop and remove any running containers with the name "backend"
                     sh '''
                     if [ "$(docker ps -q -f name=node-app1)" ]; then
-                        docker stop backend
-                        docker rm backend
+                        docker stop node-app1
+                        docker rm node-app1
                     fi
                     '''
                     sh '''
-                    if [ "$(docker images -q backend)" ]; then
-                        docker rmi -f backend
+                    if [ "$(docker images -q node-app1)" ]; then
+                        docker rmi -f node-app1
                     fi
                     '''
                 }
