@@ -19,7 +19,7 @@ router.delete("/:id", verifyToken, isAdmin, deleteBlog);
 
 //for devops project
 router.get("/", (req, res) => {
-  res.send("Successfull Here !!");
+  res.send("I am working...");
 });
 
 module.exports = router;
