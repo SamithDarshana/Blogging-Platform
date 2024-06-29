@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Clean Up') {
+            steps {
+                script {
+                    // Stop and remove any running containers with the name "backend"
+                    sh '''
+                    if [ "$(docker ps -q -f name=node-app1)" ]; then
+                        docker stop backend
+                        docker rm backend
+                    fi
+                    '''
+                    sh '''
+                    if [ "$(docker images -q backend)" ]; then
+                        docker rmi -f backend
+                    fi
+                    '''
+                }
+            }
+        }
+        
+        stage('Build Image') {
+            steps {
+                script {
+                    // Build the Docker image
+                    sh 'docker build -t backend .'
+                }
+            }
+        }
+        
+        stage('Run Container') {
+            steps {
+                script {
+                    // Run the Docker container
+                    sh 'docker run -d --name node-app1 -p 3001:3001 node-app1'
+                }
+            }
+        }
+    }
+}
